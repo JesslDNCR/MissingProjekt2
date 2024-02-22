@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://da3edpyodxipv"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_amxnq"]
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_o740d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3c8mg"]
+height = 66.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f41n"]
+radius = 35.2278
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cnlx"]
+bg_color = Color(0.533333, 0, 0, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk0f7"]
+bg_color = Color(0.00392157, 0.729412, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_amxnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3c8mg")
+
+[node name="HappyBoo" parent="." instance=ExtResource("1_o740d")]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_1f41n")
+debug_color = Color(0.960784, 0, 0.521569, 0.321569)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+offset_left = -57.0
+offset_top = -137.0
+offset_right = 57.0
+offset_bottom = -110.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7cnlx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wk0f7")
+value = 100.0
+rounded = true
+show_percentage = false

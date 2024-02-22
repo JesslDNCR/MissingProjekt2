@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://dloean00pd15f"]
+
+[ext_resource type="Script" path="res://HoodedFigure.gd" id="1_0girn"]
+[ext_resource type="Texture2D" uid="uid://2vvi30e802fl" path="res://AnimationSheet_Character.png" id="1_6port"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gt3n"]
+atlas = ExtResource("1_6port")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjnve"]
+atlas = ExtResource("1_6port")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs31l"]
+atlas = ExtResource("1_6port")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3wbu"]
+atlas = ExtResource("1_6port")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdb8j"]
+atlas = ExtResource("1_6port")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsim7"]
+atlas = ExtResource("1_6port")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh7dn"]
+atlas = ExtResource("1_6port")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2pc5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gt3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjnve")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs31l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3wbu")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdb8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsim7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh7dn")
+}],
+"loop": true,
+"name": &"vanish",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_skujs"]
+radius = 32.0
+height = 112.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tnum"]
+size = Vector2(224, 176)
+
+[node name="HoodedFigure" type="CharacterBody2D"]
+process_mode = 3
+script = ExtResource("1_0girn")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_2pc5m")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_skujs")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_7tnum")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

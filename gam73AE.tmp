@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvpqvgrnopph7"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_jrrar"]
+[ext_resource type="PackedScene" uid="uid://da3edpyodxipv" path="res://player.tscn" id="1_xg6qa"]
+[ext_resource type="PackedScene" uid="uid://7wxaybs7fnus" path="res://Tree.tscn" id="2_nqmsx"]
+
+[sub_resource type="Curve2D" id="Curve2D_t63nr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, -168, 0, 0, 0, 0, 1392, -192, 0, 0, 0, 0, 1384, 904, 0, 0, 0, 0, -168, 896, 0, 0, 0, 0, -168, -176, 0, 0, 0, 0, -56, -176, 0, 0, 0, 0, 64, -168)
+}
+point_count = 7
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_jrrar")
+
+[node name="Player" parent="." instance=ExtResource("1_xg6qa")]
+position = Vector2(568, 280)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_nqmsx")]
+position = Vector2(128, 256)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.282353, 0.701961, 0.368627, 1)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t63nr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(64, -168)
+rotation = -0.0180703
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

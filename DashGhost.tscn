@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7th8eswd8ek1"]
+
+[ext_resource type="Script" path="res://DashGhost.gd" id="1_1sdtl"]
+[ext_resource type="Texture2D" uid="uid://d37q72r5sir45" path="res://doux.png" id="1_bhfh1"]
+
+[node name="DashGhost" type="Sprite2D"]
+z_index = -1
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("1_bhfh1")
+hframes = 24
+frame = 18
+script = ExtResource("1_1sdtl")
