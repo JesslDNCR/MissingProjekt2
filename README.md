@@ -1,6 +1,6 @@
-# 2D Dino vampire suvivor game
-This is a little ampire suvivor game where you have to clear the area from the enemies.
-A counter is running when you want to speedrun(but its not really a speedrun game).
+# 2D Dino vampire survivor game
+This is a little vampire survivor game where you have to clear the area from the enemies.
+A counter is running when you want to speedrun (but its not really a speedrun game).
 
 
 ## How to play the game
