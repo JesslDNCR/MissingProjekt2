@@ -1,0 +1,14 @@
+Control
+Sprite2D
+CanvasLayer
+Button
+Node2D
+Panel
+ColorRect
+Label
+RichTextLabel
+Timer
+CollisionShape2D
+Area2D
+CharacterBody2D
+AnimatedSprite2D
